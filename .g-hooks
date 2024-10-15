@@ -1,0 +1,11 @@
+;;; SPDX-FileCopyrightText: 2024 Brian Kubisiak <brian@kubisiak.com>
+;;;
+;;; SPDX-License-Identifier: GPL-3.0-or-later
+
+(use-modules (g-hooks core)
+             (g-hooks library)
+             (gnu packages package-management))
+
+(g-hooks
+ (gitlint-run)
+ (reuse-lint))
