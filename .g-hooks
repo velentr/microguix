@@ -4,8 +4,26 @@
 
 (use-modules (g-hooks core)
              (g-hooks library)
-             (gnu packages package-management))
+             (g-hooks utils)
+             (gnu packages package-management)
+             (guix gexp))
 
 (g-hooks
  (gitlint-run)
+ (post-merge (program guix "/bin/guix" "git" "authenticate"))
+ (pre-push
+  #~(begin
+      (use-modules (ice-9 rdelim))
+      (let authenticate-all ((line (read-line)))
+        (when (not (eof-object? line))
+          (let* ((local-oid (cadr (string-split line #\sp)))
+                 (rc (status:exit-val
+                      (system*
+                       #$(file-append guix "/bin/guix")
+                       "git"
+                       "authenticate"
+                       (string-concatenate (list "--end=" local-oid))))))
+            (unless (zero? rc)
+              (exit rc)))
+          (authenticate-all (read-line))))))
  (reuse-lint))
