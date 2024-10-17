@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2024 Brian Kubisiak <brian@kubisiak.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+* NAME
+microguix: guix for embedded SoCs
+
+* INSTALLATION
+Add the following to ~.config/guix/channels.scm~:
+
+#+BEGIN_SRC scheme
+(channel
+ (name 'microguix)
+ (url "https://github.com/velentr/microguix")
+ (introduction
+  (make-channel-introduction
+   "a1704a33161786e52ccb279e8565117f5d60bd61"
+   (openpgp-fingerprint
+    "B10E 190D D459 A6FA 6CE2  DF99 D07C FD67 16F3 7692"))))
+#+END_SRC
