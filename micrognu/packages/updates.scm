@@ -22,7 +22,7 @@
 (define-public rauc
   (package
     (name "rauc")
-    (version "1.11.3")
+    (version "1.12")
     (source
      (origin
        (method url-fetch)
@@ -30,7 +30,7 @@
         (string-append "https://github.com/rauc/rauc/releases/download/v"
                        version "/rauc-" version ".tar.xz"))
        (sha256
-        (base32 "045w82v3jhnrq34yd52rjvn3qzs9jvx9lr20zlj3mh1r552yx0pg"))))
+        (base32 "0cahphsm2jr7z9px4nark8p2kcx5wlqshmp862xvkdpqk88iws4n"))))
     (build-system meson-build-system)
     (arguments
      (list
@@ -38,10 +38,12 @@
       #~(let* ((out #$output)
                (dbus-data (string-append out "/share/dbus-1"))
                (dbusinterfaces (string-append dbus-data "/interfaces"))
-               (dbussystemservice (string-append dbus-data "/system-services")))
+               (dbussystemservice (string-append dbus-data "/system-services"))
+               (dbuspolicydir (string-append dbus-data "/system.d")))
           (list
            (string-append "-Ddbusinterfacesdir=" dbusinterfaces)
-           (string-append "-Ddbussystemservicedir=" dbussystemservice)))
+           (string-append "-Ddbussystemservicedir=" dbussystemservice)
+           (string-append "-Ddbuspolicydir=" dbuspolicydir)))
       #:phases
       #~(modify-phases %standard-phases
           (add-after 'unpack 'patch-tests
