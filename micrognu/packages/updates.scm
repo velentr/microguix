@@ -22,7 +22,7 @@
 (define-public rauc
   (package
     (name "rauc")
-    (version "1.12")
+    (version "1.13")
     (source
      (origin
        (method url-fetch)
@@ -30,7 +30,7 @@
         (string-append "https://github.com/rauc/rauc/releases/download/v"
                        version "/rauc-" version ".tar.xz"))
        (sha256
-        (base32 "0cahphsm2jr7z9px4nark8p2kcx5wlqshmp862xvkdpqk88iws4n"))))
+        (base32 "0ghivavyslbpksynymr14n71r7v2jqfm1m84dsyqsg3ibn523nqx"))))
     (build-system meson-build-system)
     (arguments
      (list
@@ -67,7 +67,7 @@
                    ,(string-append #$e2fsprogs "/sbin")
                    ,(string-append #$dosfstools "/sbin")))))))))
     (native-inputs
-     (list e2fsprogs `(,glib "bin") pkg-config python squashfs-tools))
+     (list e2fsprogs fakeroot `(,glib "bin") pkg-config python squashfs-tools))
     (inputs
      (list curl dbus glib json-glib libnl openssl))
     (synopsis "Safe and secure software updates for embedded Linux")
