@@ -22,7 +22,7 @@
 (define-public rauc
   (package
     (name "rauc")
-    (version "1.13")
+    (version "1.14")
     (source
      (origin
        (method url-fetch)
@@ -30,7 +30,7 @@
         (string-append "https://github.com/rauc/rauc/releases/download/v"
                        version "/rauc-" version ".tar.xz"))
        (sha256
-        (base32 "0ghivavyslbpksynymr14n71r7v2jqfm1m84dsyqsg3ibn523nqx"))))
+        (base32 "0b7l9vaivxiihhzzxsd174c05wp4rfhfpxh7x5w97gw27mbqb37l"))))
     (build-system meson-build-system)
     (arguments
      (list
