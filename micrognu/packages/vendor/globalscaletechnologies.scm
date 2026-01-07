@@ -6,7 +6,8 @@
   #:use-module (gnu packages linux)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
-  #:use-module (guix packages))
+  #:use-module (guix packages)
+  #:use-module (micrognu packages linux))
 
 (define-public linux-espressobin-ultra-5.4
   (package
@@ -28,3 +29,13 @@
     (synopsis "Linux kernel with patches from globalscale technologies")
     (description "Linux kernel build from globalscale technologies sources,
 including nonfree binary blobs.")))
+
+(define-public espressobin-ultra-linux-firmware
+  (package/linux-firmware
+   "^mrvl/pcieusb8997_combo_v4"
+   (name "espressobin-ultra-linux-firmware")
+   (license
+    ((@@ (guix licenses) license)
+     "Nonfree"
+     "https://gitlab.com/kernel-firmware/linux-firmware/-/blob/main/LICENCE.Marvell"
+     ""))))
